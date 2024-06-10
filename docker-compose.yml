@@ -1,27 +1,19 @@
 version: "3.5"
 services:
-  reth:
-    image: "reth.reth.dnp.dappnode.eth:0.0.1"
+  reth.dnp.dappnode.eth:
+    image: "reth.dnp.dappnode.eth:0.0.1"
     build:
       context: .
       args:
-        UPSTREAM_VERSION: v0.1.0-alpha.4
-    ports:
-      - "30405:30405/tcp"
-      - "30405:30405/udp"
+        UPSTREAM_VERSION: v0.2.0-beta.9
     volumes:
-      - "rethdata:/home/reth/.local/share"
+      - "reth:/home/reth/.local/share"
     environment:
-      P2P_PORT: 30405
-      EXTRA_OPTs: "--http.api=rpc,eth,web3,net,debug,trace,txpool"
+      - EXTRA_OPTION=--http.api rpc,eth,web3,net,trace,txpool
+      - P2P_PORT=30403
+    ports:
+      - "30403:30403/tcp"
+      - "30403:30403/udp"
     restart: unless-stopped
-    ulimits:
-      nofile:
-        soft: 1000000
-        hard: 1000000
-    deploy:
-      resources:
-        limits:
-          memory: 32768M
 volumes:
   rethdata: {}
