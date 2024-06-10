@@ -1,12 +1,12 @@
 [
     {
         "labels": {
-            "package": "reth.reth.dnp.dappnode.eth",
-            "service": "reth.reth.dappnode",
+            "package": "reth.dnp.dappnode.eth",
+            "service": "reth.dappnode",
             "__metrics_path__": "/"
         },
         "targets": [
-            "reth.reth.dappnode:6060"
+            "reth.dappnode:6060"
         ]
     }
 ]

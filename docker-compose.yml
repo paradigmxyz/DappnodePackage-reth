@@ -1,19 +1,19 @@
 version: "3.5"
 services:
   reth.dnp.dappnode.eth:
-    image: "reth.dnp.dappnode.eth:0.0.1"
     build:
       context: .
       args:
         UPSTREAM_VERSION: v0.2.0-beta.9
+    image: reth.dnp.dappnode.eth:0.0.1
     volumes:
-      - "reth:/home/reth/.local/share"
+      - rethdata:/home/reth/.local/share
     environment:
-      - EXTRA_OPTION=--http.api rpc,eth,web3,net,trace,txpool
+      - EXTRA_OPTIONS="--http --http.api rpc,eth,web3,net,trace,txpool"
       - P2P_PORT=30403
     ports:
-      - "30403:30403/tcp"
-      - "30403:30403/udp"
+      - 30403:30403/tcp
+      - 30403:30403/udp
     restart: unless-stopped
 volumes:
   rethdata: {}
